@@ -42,7 +42,7 @@
 - 상관관계 분석을 통한 리스크 관리
 - 원클릭 마을 추가
 
-### 🔗 마이데이터 연동
+### 🔗 마이데이터 연동 (Mock)
 - 금융기관 자산 자동 연동
 - 4단계 연동 프로세스
 - 실시간 자산 동기화
@@ -58,7 +58,10 @@
 - **HTML5** - 시맨틱 마크업
 - **CSS3** - CSS Grid, Flexbox, Animations
 - **Vanilla JavaScript (ES6+)** - 프레임워크 없는 순수 JS
-- **Chart.js** - 데이터 시각화
+- **Chart.js 4.4** - 데이터 시각화
+- **chartjs-plugin-datalabels** - 차트 라벨 플러그인
+- **SheetJS (xlsx)** - 엑셀 내보내기
+- **jsPDF + html2canvas** - PDF 내보내기
 
 ### Storage
 - **LocalStorage API** - 클라이언트 사이드 데이터 저장
@@ -106,16 +109,38 @@ http://localhost:8000
 
 ```
 front/
-├── index.html              # 메인 HTML (SPA 구조)
+├── index.html                  # 메인 HTML (SPA 구조)
 ├── css/
-│   └── styles.css          # 전체 스타일 (1900+ 줄)
+│   ├── variables.css           # CSS 변수 (색상, 폰트 등)
+│   ├── layout.css              # 레이아웃 (헤더, 네비게이션, 컨테이너)
+│   ├── login.css               # 로그인 페이지 스타일
+│   ├── components.css          # 공통 컴포넌트 (카드, 모달, Toast 등)
+│   ├── pages-main.css          # 메인/홈 페이지 스타일
+│   ├── pages-analysis.css      # 자산 분석 페이지 스타일
+│   ├── pages-mypage.css        # 마이페이지 스타일
+│   ├── pages-original.css      # 기존 페이지 스타일 (마을, 브리핑, 이웃)
+│   └── responsive.css          # 반응형 디자인 (미디어 쿼리)
 ├── js/
-│   └── app.js              # 애플리케이션 로직 (2000+ 줄)
+│   ├── data.js                 # 샘플 데이터 정의
+│   ├── storage.js              # LocalStorage 데이터 관리 (load/save)
+│   ├── navigation.js           # SPA 페이지 전환 로직
+│   ├── ui-utils.js             # Toast 알림, 확인 모달 등 UI 유틸리티
+│   ├── auth.js                 # 로그인/인증 처리
+│   ├── main-page.js            # 메인 페이지 로직
+│   ├── villages.js             # 마을 관리 기능
+│   ├── tts.js                  # TTS 음성 브리핑
+│   ├── analysis.js             # 자산 분석 차트
+│   ├── mypage.js               # 마이페이지 기능
+│   ├── mydata.js               # 마이데이터 연동
+│   ├── investment-test.js      # 투자 성향 진단 테스트
+│   └── api.js                  # API 통신 모듈
 ├── public/
-│   ├── logo.png            # 로고 이미지
-│   └── map.png             # 세계 지도 이미지
-├── CLAUDE.md               # 개발 가이드 (Claude Code용)
-└── README.md               # 프로젝트 문서 (이 파일)
+│   ├── logo.png                # 로고 이미지
+│   ├── map.png                 # 세계 지도 이미지 (PNG)
+│   ├── map.jpg                 # 세계 지도 이미지 (JPG)
+│   └── map.svg                 # 세계 지도 이미지 (SVG)
+├── CLAUDE.md                   # 개발 가이드 (Claude Code용)
+└── README.md                   # 프로젝트 문서 (이 파일)
 ```
 
 ## 🎨 주요 기능 상세
@@ -323,25 +348,15 @@ resetData();
 ## 🎯 향후 계획
 
 - [ ] 실제 증권 API 연동
-- [ ] 백엔드 서버 구축
+- [O] 백엔드 서버 구축
 - [ ] 사용자 인증 시스템
 - [ ] 실시간 주가 업데이트
 - [ ] 푸시 알림
-- [ ] 다크모드 완전 지원
+- [O] 다크모드 완전 지원
 - [ ] 다국어 지원 (영어, 일본어)
 - [ ] PWA 변환
 - [ ] 소셜 로그인
 - [ ] 포트폴리오 백테스팅
-
-## 🤝 기여하기
-
-프로젝트 개선에 기여하고 싶으시다면:
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ### 코딩 컨벤션
 - **JavaScript**: ESLint (Airbnb Style Guide)
@@ -354,14 +369,16 @@ resetData();
 
 ## 👥 팀
 
-- **개발**: Claude Sonnet 4.5 with Human Developer
-- **디자인**: Material Design + Custom Theme
-- **기획**: Individual Investors ("Ants") Insights
+- **백엔드 & 인프라**: 김병수 사원 [IT]
+- **AI 에이전트**: 이정욱 사원 [IT]
+- **프론트**: 박상욱 사원 [IT]
+- **디자인**: 박상욱 사원 [IT]
+- **기획**: 박경연 사원 [경영]
 
 ## 📞 문의
 
 - **이슈**: [GitHub Issues](https://github.com/26-Koscom-4/front/issues)
-- **이메일**: contact@k-amis.com (가상)
+- **이메일**: dkxkqkrtkddn@naver.com
 
 ## 🙏 감사의 말
 
